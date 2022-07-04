@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,10 +20,15 @@
   },
   "homepage": "https://github.com/Final-Art-Project/backend#readme",
   "dependencies": {
+    "axios": "^0.27.2",
+    "cloudinary": "^1.30.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongoose": "^6.4.0"
+    "mongoose": "^6.4.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "socket.io": "^4.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

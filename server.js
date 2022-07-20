@@ -37,10 +37,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
   return res.json({ image: req.file.path });
 });
 
-app.listen(process.env.PORT ?? 3000, function () {
-  console.log("listening on *:3000");
-});
-
 const BASE_URL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}`;
 
 const auth = {
@@ -69,6 +65,9 @@ app.get("/search", async (req, res) => {
   return res.send(response.data);
 });
 
-const PORT = 3000;
+app.listen(process.env.PORT || 3000, function () {
+  console.log("listening on *:3000");
+});
+// const PORT = 3000;
 
-app.listen(PORT, console.log(`index running on port ${PORT}`));
+// app.listen(PORT, console.log(`index running on port ${PORT}`));

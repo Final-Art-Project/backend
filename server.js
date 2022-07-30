@@ -9,7 +9,7 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 
 const app = express();
 app.use(cors());
-// app.use(json());
+app.use(express.json());
 const { parsed: config } = dotenv.config();
 
 cloudinary.config({
@@ -35,6 +35,26 @@ app.post("/upload", upload.single("file"), (req, res) => {
   console.log(req.file);
   console.log(req.body);
   return res.json({ image: req.file.path });
+});
+
+app.delete("/delete", async (req, res) => {
+  try {
+    console.log("/delete called");
+    const { public_id } = req.body;
+    if (!public_id) {
+      throw new Error("no public id provided");
+    }
+    const response = await cloudinary.uploader.destroy(public_id);
+    console.log(response);
+    if (response.result === "ok") {
+      return res.json({ message: "deleted" });
+    } else {
+      return res.status(404).json({ message: "not found" });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ err: err.message });
+  }
 });
 
 const BASE_URL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}`;
@@ -68,6 +88,3 @@ app.get("/search", async (req, res) => {
 app.listen(process.env.PORT || 3000, function () {
   console.log("listening on *:3000");
 });
-// const PORT = 3000;
-
-// app.listen(PORT, console.log(`index running on port ${PORT}`));

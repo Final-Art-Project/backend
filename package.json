@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "socket.io": "^4.5.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "nodemon": "^2.0.19"
   }
 }

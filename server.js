@@ -57,7 +57,7 @@ app.delete("/delete", async (req, res) => {
   }
 });
 
-const BASE_URL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}`;
+const BASE_URL = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}`;
 
 const auth = {
   username: config.API_KEY,
